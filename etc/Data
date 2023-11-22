@@ -20,8 +20,7 @@ CREATE TABLE tours (
     due DATE,
     max_capacity INT,
     from_date DATE,
-    to_date DATE,
-    url VARCHAR(255)
+    to_date DATE
 );
 
 -- SQL script for inserting data
@@ -34,8 +33,99 @@ VALUES
     -- Add more rows as needed
 
 -- Insert data into tours table
-INSERT INTO tours (name, price, description, status, is_closed, due, max_capacity, from_date, to_date, url)
+INSERT INTO tours (name, price, description, status, is_closed, due, max_capacity, from_date, to_date)
 VALUES
-    ('Tour1', 100.0, 'Description for Tour1', 'Active', false, '2023-01-01', 50, '2023-02-01', '2023-02-10', 'koco'),
-    ('Tour2', 150.0, 'Description for Tour2', 'Closed', true, '2023-03-01', 30, '2023-04-01', '2023-04-10', 'koco');
+    ('Tour1', 100.0, 'Description for Tour1', 'Active', false, '2023-01-01', 50, '2023-02-01', '2023-02-10'),
+    ('Tour2', 150.0, 'Description for Tour2', 'Closed', true, '2023-03-01', 30, '2023-04-01', '2023-04-10');
     -- Add more rows as needed
+
+CREATE TABLE contract (
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  User_ID INT NOT NULL,
+  Tour_ID INT NOT NULL,
+  Price INT NOT NULL,
+  Done BOOLEAN NOT NULL,
+  FOREIGN KEY (User_ID) REFERENCES users(ID)
+);
+
+CREATE TABLE specialties (
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Name VARCHAR(255) NOT NULL,
+  Location VARCHAR(255) NOT NULL,
+  Rating FLOAT NOT NULL,
+  Description VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE reviews (
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Message TEXT NOT NULL,
+  Rating FLOAT NOT NULL,
+  User_ID INT NOT NULL,
+  Tour_ID INT NOT NULL,
+  Time DATETIME NOT NULL,
+  FOREIGN KEY (User_ID) REFERENCES users(ID),
+  FOREIGN KEY (Tour_ID) REFERENCES tours(ID)
+);
+
+CREATE TABLE announcements (
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Message TEXT NOT NULL,
+  Times VARCHAR(255) NOT NULL
+);
+CREATE TABLE support (
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  User_ID INT NOT NULL,
+  User1_ID INT NOT NULL,
+  Message TEXT NOT NULL,
+  Time DATETIME NOT NULL,
+  FOREIGN KEY (User_ID) REFERENCES users(ID),
+  FOREIGN KEY (User1_ID) REFERENCES users(ID)
+);
+CREATE TABLE location_and_food (
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Location_ID INT NOT NULL,
+  Food_ID INT NOT NULL,
+  FOREIGN KEY (Location_ID) REFERENCES locations(ID),
+  FOREIGN KEY (Food_ID) REFERENCES specialties(ID)
+);
+
+CREATE TABLE tour_messenger (
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    User_ID INT NOT NULL,
+    Tour_ID INT NOT NULL,
+    Time DATETIME NOT NULL,
+    Message TEXT NOT NULL,
+    FOREIGN KEY (User_ID) REFERENCES users(ID),
+    FOREIGN KEY (Tour_ID) REFERENCES tours(ID)
+);
+
+CREATE TABLE reports (
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  User_ID INT NOT NULL,
+  Notification_ID INT NOT NULL,
+  FOREIGN KEY (User_ID) REFERENCES users(ID),
+  FOREIGN KEY (Notification_ID) REFERENCES announcements(ID)
+);
+
+CREATE TABLE images (
+  ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Url VARCHAR(255) NOT NULL,
+  Time DATETIME NOT NULL,
+  Tour_ID INT NOT NULL,
+  Food_ID INT NOT NULL,
+  Location_ID INT NOT NULL,
+  Description VARCHAR(255) NOT NULL,
+  FOREIGN KEY (Tour_ID) REFERENCES tours(ID),
+  FOREIGN KEY (Food_ID) REFERENCES specialties(ID),
+  FOREIGN KEY (Location_ID) REFERENCES locations(ID)
+);
+
+CREATE TABLE tour_and_location (
+    ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    Location_ID INT NOT NULL,
+    Tour_ID INT NOT NULL,
+    From_datetime DATETIME,
+    To_datetime DATETIME,
+    FOREIGN KEY (Location_ID) REFERENCES locations(Location_ID),
+    FOREIGN KEY (Tour_ID) REFERENCES tours(ID)
+);
