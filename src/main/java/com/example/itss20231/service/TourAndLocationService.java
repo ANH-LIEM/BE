@@ -1,6 +1,7 @@
 package com.example.itss20231.service;
 
 import com.example.itss20231.dto.Location;
+import com.example.itss20231.dto.TourAndLocation;
 import com.example.itss20231.repo.TourAndLocationsRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,11 @@ public class TourAndLocationService {
     public TourAndLocationService(TourAndLocationsRepo tourAndLocationRepo) {
         this.tourAndLocationRepo = tourAndLocationRepo;
     }
+
+    public TourAndLocation createTourAndLocation(TourAndLocation tourAndLocation) {
+        return tourAndLocationRepo.save(tourAndLocation);
+    }
+
 
     @Transactional
     public List<Location> getLocationsByTourId(int id) {
