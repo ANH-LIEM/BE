@@ -20,7 +20,8 @@ CREATE TABLE tours (
     due DATE,
     max_capacity INT,
     from_date DATE,
-    to_date DATE
+    to_date DATE,
+    url VARCHAR(255)
 );
 
 -- SQL script for inserting data
@@ -33,8 +34,8 @@ VALUES
     -- Add more rows as needed
 
 -- Insert data into tours table
-INSERT INTO tours (name, price, description, status, is_closed, due, max_capacity, from_date, to_date)
+INSERT INTO tours (name, price, description, status, is_closed, due, max_capacity, from_date, to_date, url)
 VALUES
-    ('Tour1', 100.0, 'Description for Tour1', 'Active', false, '2023-01-01', 50, '2023-02-01', '2023-02-10'),
-    ('Tour2', 150.0, 'Description for Tour2', 'Closed', true, '2023-03-01', 30, '2023-04-01', '2023-04-10');
+    ('Tour1', 100.0, 'Description for Tour1', 'Active', false, '2023-01-01', 50, '2023-02-01', '2023-02-10', 'koco'),
+    ('Tour2', 150.0, 'Description for Tour2', 'Closed', true, '2023-03-01', 30, '2023-04-01', '2023-04-10', 'koco');
     -- Add more rows as needed

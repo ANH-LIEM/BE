@@ -17,6 +17,7 @@ public class Tour {
     private Date due;
     private int maxCapacity;
     private Date fromDate;
+    private String url;
     public void setId(int id) {
         this.id = id;
     }
@@ -61,4 +62,8 @@ public class Tour {
     }
 
     private Date toDate;
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 }
