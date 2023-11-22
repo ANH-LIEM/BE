@@ -28,7 +28,6 @@ public class Tour {
         this.price = price;
     }
 
-
     public void setDescription(String description) {
         this.description = description;
     }

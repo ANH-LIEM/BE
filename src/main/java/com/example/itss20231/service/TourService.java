@@ -31,15 +31,12 @@ public class TourService {
 
     @Transactional
     public Tour createTour(Tour tour) {
-        // Các kiểm tra và xử lý trước khi lưu tour vào cơ sở dữ liệu (nếu cần)
         return tourRepo.save(tour);
     }
     @Transactional
     public Tour updateTour(int id, Tour updatedTour) {
         Tour existingTour = tourRepo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tour not found with id: " + id));
-
-        // Cập nhật thông tin tour với dữ liệu mới từ updatedTour
         existingTour.setName(updatedTour.getName());
         existingTour.setPrice(updatedTour.getPrice());
         existingTour.setDescription(updatedTour.getDescription());
@@ -49,7 +46,6 @@ public class TourService {
         existingTour.setFromDate(updatedTour.getFromDate());
         existingTour.setIsClosed(updatedTour.getIsClosed());
         existingTour.setToDate(updatedTour.getToDate());
-
         return tourRepo.save(existingTour);
     }
     @Transactional
