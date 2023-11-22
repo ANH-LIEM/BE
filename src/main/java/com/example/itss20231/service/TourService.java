@@ -1,6 +1,5 @@
 package com.example.itss20231.service;
 
-import com.example.itss20231.dto.Location;
 import com.example.itss20231.dto.Tour;
 import com.example.itss20231.exception.ResourceNotFoundException;
 import com.example.itss20231.repo.TourRepo;
@@ -11,10 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ToursService {
+public class TourService {
     private TourRepo tourRepo;
     @Autowired
-    public ToursService(TourRepo tourRepo){
+    public TourService(TourRepo tourRepo){
         this.tourRepo = tourRepo;
     }
     @Transactional
