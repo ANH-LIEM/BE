@@ -1,6 +1,7 @@
 package com.example.itss20231.controller;
 
 import com.example.itss20231.dto.Tour;
+import com.example.itss20231.dto.TourCreationRequest;
 import com.example.itss20231.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,18 +15,23 @@ import java.util.List;
 public class TourController {
     @Autowired
     private TourService tourService;
+
     @GetMapping("/tour")
     public List<Tour> getAll(){
         return tourService.getAll();
     }
+
     @GetMapping("/tour/{id}")
     public ResponseEntity<Tour> getLocationById(@PathVariable int id) {
         Tour tour = tourService.getTourById(id);
         return ResponseEntity.ok().body(tour);
     }
+
     @PostMapping("/tour")
-    public ResponseEntity<Tour> createTour(@RequestBody Tour tour) {
-        Tour createdTour = tourService.createTour(tour);
+    public ResponseEntity<Tour> createTour(@RequestBody TourCreationRequest tour) {
+        List<Integer> locationIds = tour.getLocations();
+        Tour createdTour = tourService.createTour(
+                tour.toTour(), locationIds);
         return new ResponseEntity<>(createdTour, HttpStatus.CREATED);
     }
     @PutMapping("/tour/{id}")
@@ -39,3 +45,4 @@ public class TourController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
+
