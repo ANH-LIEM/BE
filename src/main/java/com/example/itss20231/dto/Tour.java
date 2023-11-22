@@ -43,13 +43,9 @@ public class Tour {
     public void setIsClosed(boolean closed) {
         isClosed = closed;
     }
-
-
     public void setDue(Date due) {
         this.due = due;
     }
-
-
     public void setMaxCapacity(int maxCapacity) {
         this.maxCapacity = maxCapacity;
     }

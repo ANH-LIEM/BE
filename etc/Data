@@ -1,0 +1,40 @@
+-- SQL script for creating tables
+
+-- Table for Location entity
+CREATE TABLE locations (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    location VARCHAR(255),
+    rating FLOAT,
+    description TEXT
+);
+
+-- Table for Tour entity
+CREATE TABLE tours (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    price DOUBLE,
+    description TEXT,
+    status VARCHAR(255),
+    is_closed BOOLEAN,
+    due DATE,
+    max_capacity INT,
+    from_date DATE,
+    to_date DATE
+);
+
+-- SQL script for inserting data
+
+-- Insert data into locations table
+INSERT INTO locations (name, location, rating, description)
+VALUES
+    ('Location1', 'City1', 4.5, 'Description for Location1'),
+    ('Location2', 'City2', 3.8, 'Description for Location2');
+    -- Add more rows as needed
+
+-- Insert data into tours table
+INSERT INTO tours (name, price, description, status, is_closed, due, max_capacity, from_date, to_date)
+VALUES
+    ('Tour1', 100.0, 'Description for Tour1', 'Active', false, '2023-01-01', 50, '2023-02-01', '2023-02-10'),
+    ('Tour2', 150.0, 'Description for Tour2', 'Closed', true, '2023-03-01', 30, '2023-04-01', '2023-04-10');
+    -- Add more rows as needed
