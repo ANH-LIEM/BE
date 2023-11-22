@@ -44,7 +44,7 @@ public class TourService {
         existingTour.setDue(updatedTour.getDue());
         existingTour.setMaxCapacity(updatedTour.getMaxCapacity());
         existingTour.setFromDate(updatedTour.getFromDate());
-        existingTour.setIsClosed(updatedTour.getIsClosed());
+        existingTour.setClosed(updatedTour.isClosed());
         existingTour.setToDate(updatedTour.getToDate());
         return tourRepo.save(existingTour);
     }
