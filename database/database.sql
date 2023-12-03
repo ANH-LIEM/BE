@@ -103,6 +103,136 @@ LOCK TABLES `tours` WRITE;
 INSERT INTO `tours` VALUES (1,'Khám phá sự tuyệt vời của Hạ Long trên chuyến du ngoạn thư giãn.','2023-12-01 00:00:00.000000','2023-12-15 00:00:00.000000',_binary '\0',50,'Trải Nghiệm Thanh Xuân',150,'Mở','2023-12-20 00:00:00.000000',''),(2,'Hành trình mạo hiểm tại Phong Nha - Kẻ Bàng.','2023-11-25 00:00:00.000000','2023-12-10 00:00:00.000000',_binary '\0',40,'Du Lịch Chữa lành',120,'Mở','2023-12-15 00:00:00.000000',''),(3,'Trải nghiệm vẻ đẹp hiện đại của Đà Nẵng và bãi biển đẹp.','2023-12-05 00:00:00.000000','2023-12-18 00:00:00.000000',_binary '\0',30,'3 Ngày 2 Đêm Đà Nẵng',80,'Mở','2023-12-23 00:00:00.000000',''),(4,'Thư giãn trong vẻ đẹp thanh bình của Vườn Quốc gia Núi Chúa.','2023-12-08 00:00:00.000000','2023-12-22 00:00:00.000000',_binary '\0',25,'Nghỉ Dưỡng Thiên Nhiên Núi Chúa',100,'Mở','2023-12-27 00:00:00.000000','');
 /*!40000 ALTER TABLE `tours` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS `foods`;
+CREATE TABLE `foods` (
+                         `id` int NOT NULL AUTO_INCREMENT,
+                         `name` varchar(255) DEFAULT NULL,
+                         `location_id` int DEFAULT NULL,
+                         `rating` float DEFAULT NULL,
+                         `description` varchar(255) DEFAULT NULL,
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `foods` VALUES (1,'Phở',1,4.5,'Rất ngon'),(2,'Bun ca',1,4.5,'Rất ngon');
+
+
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+                        `id` int NOT NULL AUTO_INCREMENT,
+                        `email` varchar(255) DEFAULT NULL,
+                        `password` varchar(255) DEFAULT NULL,
+                        `name` varchar(255) DEFAULT NULL,
+                        `role` int DEFAULT NULL,
+                        `nationality` varchar(255) DEFAULT NULL,
+                        `phone` int DEFAULT NULL,
+                        PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `user` VALUES (1,'oke@gmail.com','oke','oke',4,'oke',0123456789),(2,'oke@gmail.com','oke','oke',4,'oke',0123456789);
+
+
+
+DROP TABLE IF EXISTS `contract`;
+CREATE TABLE `contract` (
+                            `id` int NOT NULL AUTO_INCREMENT,
+                            `user_id` int DEFAULT NULL,
+                            `tour_id` int DEFAULT NULL,
+                            `price` int DEFAULT NULL,
+                            `done` boolean DEFAULT NULL,
+                            PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `contract` VALUES (1,1,1,2000,true),(2,1,1,2000,true);
+
+
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE `message` (
+                           `id` int NOT NULL AUTO_INCREMENT,
+                           `message` varchar(255) DEFAULT NULL,
+                           `user_id` int DEFAULT NULL,
+                           `tour_id` int DEFAULT NULL,
+                           `time` datetime(6) DEFAULT NULL,
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `message` VALUES (1,'Xịn',1,1,'2023-12-01 00:00:00.000000'),(2,'Đắt',1,1,'2023-12-01 00:00:00.000000');
+
+
+DROP TABLE IF EXISTS `locations_and_foods`;
+CREATE TABLE `locations_and_foods` (
+                                       `id` int NOT NULL AUTO_INCREMENT,
+                                       `location_id` int DEFAULT NULL,
+                                       `food_id` int DEFAULT NULL,
+                                       PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `locations_and_foods` VALUES (1,1,1),(2,1,1);
+
+
+DROP TABLE IF EXISTS `user_and_notification`;
+CREATE TABLE `user_and_notification` (
+                                         `id` int NOT NULL AUTO_INCREMENT,
+                                         `user_id` int DEFAULT NULL,
+                                         `notification_id` int DEFAULT NULL,
+                                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `user_and_notification` VALUES (1,1,1),(2,1,1);
+
+
+DROP TABLE IF EXISTS `image`;
+CREATE TABLE `image` (
+                         `id` int NOT NULL AUTO_INCREMENT,
+                         `description` varchar(255) DEFAULT NULL,
+                         `url` varchar(255) DEFAULT NULL,
+                         `food_id` int DEFAULT NULL,
+                         `location_id` int DEFAULT NULL,
+                         `tour_id` int DEFAULT NULL,
+                         `time` datetime(6) DEFAULT NULL,
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `image` VALUES (1,'Xịn','test',1,1,1,'2023-12-01 00:00:00.000000'),(2,'Xịn','test',1,1,1,'2023-12-01 00:00:00.000000');
+
+
+DROP TABLE IF EXISTS `reviews`;
+CREATE TABLE `reviews` (
+                           `id` int NOT NULL AUTO_INCREMENT,
+                           `message` varchar(255) DEFAULT NULL,
+                           `rating` float DEFAULT NULL,
+                           `user_id` int DEFAULT NULL,
+                           `tours_id` int DEFAULT NULL,
+                           `time` datetime(6) DEFAULT NULL,
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `reviews` VALUES (1,'Xịn',4.5,1,1,'2023-12-01 00:00:00.000000'),(2,'Đắt',4.5,1,1,'2023-12-01 00:00:00.000000');
+
+DROP TABLE IF EXISTS `notices`;
+CREATE TABLE `notices` (
+                           `id` int NOT NULL AUTO_INCREMENT,
+                           `message` varchar(255) DEFAULT NULL,
+                           `time` datetime(6) DEFAULT NULL,
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `notices` VALUES (1,'Alo alo','2023-12-01 00:00:00.000000'),(2,'Run away','2023-12-01 00:00:00.000000');
+
+DROP TABLE IF EXISTS `support`;
+CREATE TABLE `support` (
+                           `id` int NOT NULL AUTO_INCREMENT,
+                           `user_id` int DEFAULT NULL,
+                           `user1_id` int DEFAULT NULL,
+                           `message` varchar(255) DEFAULT NULL,
+                           `time` datetime(6) DEFAULT NULL,
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `support` VALUES (1,1,1,'Alo alo','2023-12-01 00:00:00.000000'),(2,1,1,'Run away','2023-12-01 00:00:00.000000');
+
+
+
+
+
+
+
+
+
+
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
