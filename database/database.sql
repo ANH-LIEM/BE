@@ -105,17 +105,28 @@ INSERT INTO `tours` VALUES (1,'Khám phá sự tuyệt vời của Hạ Long tr�
 UNLOCK TABLES;
 
 
-DROP TABLE IF EXISTS `foods`;
-CREATE TABLE `foods` (
-                         `id` int NOT NULL AUTO_INCREMENT,
-                         `name` varchar(255) DEFAULT NULL,
-                         `location_id` int DEFAULT NULL,
-                         `rating` float DEFAULT NULL,
-                         `description` varchar(255) DEFAULT NULL,
-                         PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-INSERT INTO `foods` VALUES (1,'Phở',1,4.5,'Rất ngon'),(2,'Bun ca',1,4.5,'Rất ngon');
+DROP TABLE IF EXISTS `food`;
+CREATE TABLE `food` (
+                        `id` int NOT NULL AUTO_INCREMENT,
+                        `description` varchar(255) DEFAULT NULL,
+                        `name` varchar(255) DEFAULT NULL,
+                        `price` int DEFAULT NULL,
+                        `rating` float DEFAULT NULL,
+                        `url` varchar(255) DEFAULT NULL,
+                        PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;;
 
+INSERT INTO `food` (`id`, `description`, `name`, `price`, `rating`, `url`) VALUES
+                                                                               (1, '伝統的なベトナム風のヌードルスープ', 'Phở', 60, 4.5, 'https://example.com/pho'),
+                                                                               (2, 'ベトナムのサンドイッチ', 'Bánh mì', 30, 4.2, 'https://example.com/banh-mi'),
+                                                                               (3, 'ベトナムの新鮮な春巻き', 'Gỏi cuốn', 40, 4.7, 'https://example.com/goi-cuon'),
+                                                                               (4, '魚の陶器で煮込んだベトナム料理', 'Cá Kho Tộ', 80, 4.4, 'https://example.com/ca-kho-to'),
+                                                                               (5, 'ベトナムのサクサクしたパンケーキ', 'Bánh xèo', 50, 4.3, 'https://example.com/banh-xeo'),
+                                                                               (6, 'ベトナムの豚肉を巻いた料理', 'Gạch cuốn', 70, 4.1, 'https://example.com/gach-cuon'),
+                                                                               (7, 'ベトナムの魚醤', 'Nước mắm', 45, 4.6, 'https://example.com/nuoc-mam'),
+                                                                               (8, 'ベトナムの米ペーパー', 'Bánh tráng', 25, 4.5, 'https://example.com/banh-trang'),
+                                                                               (9, 'ベトナムの米麺とグリルドポーク', 'Bún chả', 65, 4.8, 'https://example.com/bun-cha'),
+                                                                               (10, 'ベトナムの伝統的なデザート', 'Chè', 35, 4.3, 'https://example.com/che');
 
 
 DROP TABLE IF EXISTS `user`;
@@ -156,15 +167,40 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 INSERT INTO `message` VALUES (1,'Xịn',1,1,'2023-12-01 00:00:00.000000'),(2,'Đắt',1,1,'2023-12-01 00:00:00.000000');
 
+DROP TABLE IF EXISTS `food_and_locations`;
+CREATE TABLE `food_and_locations` (
+                                      `id` int NOT NULL AUTO_INCREMENT,
+                                      `food_id` int DEFAULT NULL,
+                                      `location_id` int DEFAULT NULL,
+                                      PRIMARY KEY (`id`),
+                                      KEY `FKkacwnuiq7vlqa9vvbspsb5ik8` (`food_id`),
+                                      KEY `FK7xki2tkd0k5dm835hdb4u9smt` (`location_id`),
+                                      CONSTRAINT `FK7xki2tkd0k5dm835hdb4u9smt` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`),
+                                      CONSTRAINT `FKkacwnuiq7vlqa9vvbspsb5ik8` FOREIGN KEY (`food_id`) REFERENCES `food` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;;
 
-DROP TABLE IF EXISTS `locations_and_foods`;
-CREATE TABLE `locations_and_foods` (
-                                       `id` int NOT NULL AUTO_INCREMENT,
-                                       `location_id` int DEFAULT NULL,
-                                       `food_id` int DEFAULT NULL,
-                                       PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-INSERT INTO `locations_and_foods` VALUES (1,1,1),(2,1,1);
+INSERT INTO `food_and_locations` (`id`, `food_id`, `location_id`) VALUES
+                                                                      (1, 1, 1),
+                                                                      (2, 2, 2),
+                                                                      (3, 3, 3),
+                                                                      (4, 4, 4),
+                                                                      (5, 5, 1),
+                                                                      (6, 6, 2),
+                                                                      (7, 7, 3),
+                                                                      (8, 8, 4),
+                                                                      (9, 9, 1),
+                                                                      (10, 10, 2),
+                                                                      (11, 1, 3),
+                                                                      (12, 2, 4),
+                                                                      (13, 3, 1),
+                                                                      (14, 4, 2),
+                                                                      (15, 5, 3),
+                                                                      (16, 6, 4),
+                                                                      (17, 7, 1),
+                                                                      (18, 8, 2),
+                                                                      (19, 9, 3),
+                                                                      (20, 10, 4);
+
 
 
 DROP TABLE IF EXISTS `user_and_notification`;

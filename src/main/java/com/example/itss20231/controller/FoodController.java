@@ -1,8 +1,9 @@
 package com.example.itss20231.controller;
 
 import com.example.itss20231.dto.Food;
+import com.example.itss20231.service.FoodAndLocationService;
 import com.example.itss20231.service.FoodService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/food")  // Đặt mapping chung cho tất cả các endpoint của Food
+@RequiredArgsConstructor
 public class FoodController {
-
-    @Autowired
-    private FoodService foodService;
+    private final FoodService foodService;
+    private final FoodAndLocationService foodAndLocationService;
 
     @GetMapping
     public List<Food> getAllFoods() {
@@ -76,5 +77,10 @@ public class FoodController {
     public List<Food> sortByPriceDesc() {
         System.out.println("oke");
         return foodService.sortByPriceDesc();
+    }
+
+    @GetMapping("/foodInLocation/{id}")
+    public List<Food> getFoodByLocationId(@PathVariable int id) {
+        return foodAndLocationService.getFoodByLocationId(id);
     }
 }
