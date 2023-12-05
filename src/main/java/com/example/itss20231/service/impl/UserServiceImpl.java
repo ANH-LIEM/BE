@@ -1,5 +1,6 @@
 package com.example.itss20231.service.impl;
 
+import com.example.itss20231.dto.User;
 import com.example.itss20231.repo.UserRepo;
 import com.example.itss20231.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,9 @@ public class UserServiceImpl implements UserService {
                 return userRepo.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
             }
         };
+    }
+
+    public User getUserById(int id) {
+        return userRepo.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }
