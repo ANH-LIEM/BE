@@ -1,9 +1,13 @@
 package com.example.itss20231.dto;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name= "food_and_locations")
 @Entity
 public class FoodAndLocation {
@@ -11,9 +15,11 @@ public class FoodAndLocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "food_id")
-    private int food;
+    @ManyToOne
+    @JoinColumn(name = "food_id", referencedColumnName = "id")
+    private Food food;
 
-    @Column(name = "location_id")
-    private int location;
+    @ManyToOne
+    @JoinColumn(name = "location_id", referencedColumnName = "id")
+    private Location location;
 }

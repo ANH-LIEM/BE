@@ -1,10 +1,14 @@
 package com.example.itss20231.dto;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Table(name = "food")
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Food {
     @Id
@@ -26,29 +30,4 @@ public class Food {
 
     @Column(name = "price")
     private int price;
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLocationId(int price) {
-        this.price = price;
-    }
-
-    public void setRating(Float rating) {
-        this.rating = rating;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
 }
