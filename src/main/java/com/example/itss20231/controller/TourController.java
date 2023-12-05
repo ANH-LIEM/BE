@@ -1,5 +1,6 @@
 package com.example.itss20231.controller;
 
+import com.example.itss20231.dto.Food;
 import com.example.itss20231.dto.Tour;
 import com.example.itss20231.dto.TourCreationRequest;
 import com.example.itss20231.service.TourService;
@@ -43,5 +44,24 @@ public class TourController {
         tourService.deleteTour(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("tour/searchByName")
+    public List<Tour> searchByName(@RequestParam("name") String name) {
+        System.out.println("oke");
+        return tourService.searchByName(name);
+    }
+
+    @GetMapping("tour/sortByPriceAcs")
+    public List<Tour> sortByPriceAcs() {
+        System.out.println("oke");
+        return tourService.sortByPriceAcs();
+    }
+
+    @GetMapping("tour/sortByPriceDesc")
+    public List<Tour> sortByPriceDesc() {
+        System.out.println("oke");
+        return tourService.sortByPriceDesc();
+    }
+
 }
 

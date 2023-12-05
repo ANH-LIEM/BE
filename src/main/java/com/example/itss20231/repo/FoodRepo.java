@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface FoodRepo extends JpaRepository<Food, Integer> {
     List<Food> findAllByOrderByRatingDesc();
-    List<Food> findByName(String name);
+    List<Food> findAllByOrderByRatingAsc();
+    List<Food> findAllByName(String name);
 }
