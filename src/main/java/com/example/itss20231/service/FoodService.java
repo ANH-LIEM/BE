@@ -61,4 +61,13 @@ public class FoodService {
     public List<Food> sortByRatingAcs(){
         return foodRepo.findAllByOrderByRatingAsc();
     }
+
+
+    public List<Food> sortByPriceDesc() {
+        return foodRepo.findAllByOrderByPriceDesc();
+    }
+
+    public List<Food> sortByPriceAcs(){
+        return foodRepo.findAllByOrderByPriceAsc();
+    }
 }

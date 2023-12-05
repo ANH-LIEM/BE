@@ -15,14 +15,17 @@ public class Food {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "location_id")
-    private int locationId;
-
     @Column(name = "rating")
     private Float rating;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "url")
+    private String url;
+
+    @Column(name = "price")
+    private int price;
 
     public void setId(int id) {
         this.id = id;
@@ -32,8 +35,8 @@ public class Food {
         this.name = name;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setLocationId(int price) {
+        this.price = price;
     }
 
     public void setRating(Float rating) {
@@ -43,4 +46,9 @@ public class Food {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
 }
