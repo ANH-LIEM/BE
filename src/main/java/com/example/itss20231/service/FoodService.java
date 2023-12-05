@@ -15,6 +15,9 @@ public class FoodService {
     @Autowired
     private FoodRepo foodRepo;
 
+
+
+
     // CREATE
     public Food saveFood(Food food) {
         return foodRepo.save(food);
@@ -38,8 +41,22 @@ public class FoodService {
         return null; // Handle case where the food with the given id does not exist
     }
 
+
+
+
     // DELETE
     public void deleteFood(int id) {
         foodRepo.deleteById(id);
     }
+
+    public List<Food> searchByName(String name) {
+        return foodRepo.findByName(name);
+    }
+
+    public List<Food> sortByRating() {
+        return foodRepo.findAllByOrderByRatingDesc();
+    }
+
+
+
 }

@@ -44,4 +44,15 @@ public class FoodController {
         foodService.deleteFood(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/searchByName")
+    public List<Food> searchByName(@RequestParam("name") String name) {
+        return foodService.searchByName(name);
+    }
+
+    @GetMapping("/sortByRating")
+    public List<Food> sortByRating() {
+        return foodService.sortByRating();
+    }
+
 }
