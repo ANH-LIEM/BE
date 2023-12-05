@@ -129,21 +129,6 @@ INSERT INTO `food` (`id`, `description`, `name`, `price`, `rating`, `url`) VALUE
                                                                                (10, 'ベトナムの伝統的なデザート', 'Chè', 35, 4.3, 'https://example.com/che');
 
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-                        `id` int NOT NULL AUTO_INCREMENT,
-                        `email` varchar(255) DEFAULT NULL,
-                        `password` varchar(255) DEFAULT NULL,
-                        `name` varchar(255) DEFAULT NULL,
-                        `role` int DEFAULT NULL,
-                        `nationality` varchar(255) DEFAULT NULL,
-                        `phone` int DEFAULT NULL,
-                        PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-INSERT INTO `user` VALUES (1,'oke@gmail.com','oke','oke',4,'oke',0123456789),(2,'oke@gmail.com','oke','oke',4,'oke',0123456789);
-
-
-
 DROP TABLE IF EXISTS `contract`;
 CREATE TABLE `contract` (
                             `id` int NOT NULL AUTO_INCREMENT,

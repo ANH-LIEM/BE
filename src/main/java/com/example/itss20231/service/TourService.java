@@ -1,31 +1,22 @@
 package com.example.itss20231.service;
 
-import com.example.itss20231.dto.Food;
 import com.example.itss20231.dto.Location;
 import com.example.itss20231.dto.Tour;
 import com.example.itss20231.dto.TourAndLocation;
 import com.example.itss20231.exception.ResourceNotFoundException;
-import com.example.itss20231.repo.LocationRepo;
-import com.example.itss20231.repo.TourAndLocationsRepo;
 import com.example.itss20231.repo.TourRepo;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TourService {
-    private TourRepo tourRepo;
-    private TourAndLocationService tourAndLocationService;
-    private LocationService locationService;
-
-    @Autowired
-    public TourService(TourRepo tourRepo, TourAndLocationService tourAndLocationService, LocationService locationService) {
-        this.tourRepo = tourRepo;
-        this.tourAndLocationService = tourAndLocationService;
-        this.locationService = locationService;
-    }
+    private final TourRepo tourRepo;
+    private final TourAndLocationService tourAndLocationService;
+    private final LocationService locationService;
 
     @Transactional
     public List<Tour> getAll(){

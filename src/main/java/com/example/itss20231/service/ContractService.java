@@ -24,4 +24,8 @@ public class ContractService {
         contract.setTour(tourService.getTourById(tourId));
         return contractRepo.save(contract);
     }
+
+    public int numberOfPeople(int tourId) {
+        return contractRepo.countByTourId(tourId);
+    }
 }
