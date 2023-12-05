@@ -1,5 +1,6 @@
 package com.example.itss20231.service;
 
+import com.example.itss20231.dto.Food;
 import com.example.itss20231.dto.Location;
 import com.example.itss20231.dto.Tour;
 import com.example.itss20231.dto.TourAndLocation;
@@ -73,5 +74,17 @@ public class TourService {
     @Transactional
     public void deleteTour(int id) {
         tourRepo.deleteById(id);
+    }
+    public List<Tour> searchByName(String name) {
+        System.out.print(name);
+        return tourRepo.findAllByName(name);
+    }
+
+    public List<Tour> sortByPriceDesc() {
+        return tourRepo.findAllByOrderByPriceDesc();
+    }
+
+    public List<Tour> sortByPriceAcs(){
+        return tourRepo.findAllByOrderByPriceAsc();
     }
 }

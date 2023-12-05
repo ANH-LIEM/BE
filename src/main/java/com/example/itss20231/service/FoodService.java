@@ -50,13 +50,15 @@ public class FoodService {
     }
 
     public List<Food> searchByName(String name) {
-        return foodRepo.findByName(name);
+        System.out.print(name);
+        return foodRepo.findAllByName(name);
     }
 
-    public List<Food> sortByRating() {
+    public List<Food> sortByRatingDesc() {
         return foodRepo.findAllByOrderByRatingDesc();
     }
 
-
-
+    public List<Food> sortByRatingAcs(){
+        return foodRepo.findAllByOrderByRatingAsc();
+    }
 }

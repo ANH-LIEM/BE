@@ -1,5 +1,6 @@
 package com.example.itss20231.service;
 
+import com.example.itss20231.dto.Food;
 import com.example.itss20231.dto.Location;
 import com.example.itss20231.exception.ResourceNotFoundException;
 import com.example.itss20231.repo.LocationRepo;
@@ -37,8 +38,26 @@ public class LocationService {
         existingLocation.setDescription(updatedLocation.getDescription());
         return locationRepo.save(existingLocation);
     }
+
+
     @Transactional
     public void deleteLocation(int id) {
         locationRepo.deleteById(id);
     }
+
+
+
+    public List<Location> searchByName(String name) {
+        System.out.print(name);
+        return locationRepo.findAllByName(name);
+    }
+
+    public List<Location> sortByRatingDesc() {
+        return locationRepo.findAllByOrderByRatingDesc();
+    }
+
+    public List<Location> sortByRatingAcs(){
+        return locationRepo.findAllByOrderByRatingAsc();
+    }
+
 }

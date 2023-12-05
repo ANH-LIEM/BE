@@ -18,6 +18,7 @@ public class FoodController {
 
     @GetMapping
     public List<Food> getAllFoods() {
+        System.out.println("oke");
         return foodService.getAllFoods();
     }
 
@@ -35,6 +36,7 @@ public class FoodController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Food> updateFood(@PathVariable int id, @RequestBody Food food) {
+
         Food updatedFood = foodService.updateFood(id, food);
         return ResponseEntity.ok().body(updatedFood);
     }
@@ -45,14 +47,22 @@ public class FoodController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+
     @GetMapping("/searchByName")
     public List<Food> searchByName(@RequestParam("name") String name) {
         return foodService.searchByName(name);
     }
 
-    @GetMapping("/sortByRating")
+    @GetMapping("/sortByRatingAcs")
     public List<Food> sortByRating() {
-        return foodService.sortByRating();
+        System.out.println("oke");
+        return foodService.sortByRatingAcs();
+    }
+
+    @GetMapping("/sortByRatingDesc")
+    public List<Food> sortByRatingDesc() {
+        System.out.println("oke");
+        return foodService.sortByRatingDesc();
     }
 
 }
