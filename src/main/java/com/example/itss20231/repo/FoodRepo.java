@@ -10,5 +10,7 @@ import java.util.List;
 public interface FoodRepo extends JpaRepository<Food, Integer> {
     List<Food> findAllByOrderByRatingDesc();
     List<Food> findAllByOrderByRatingAsc();
+    List<Food> findAllByOrderByPriceDesc();
+    List<Food> findAllByOrderByPriceAsc();
     List<Food> findAllByName(String name);
 }

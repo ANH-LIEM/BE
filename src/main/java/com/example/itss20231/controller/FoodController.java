@@ -54,7 +54,7 @@ public class FoodController {
     }
 
     @GetMapping("/sortByRatingAcs")
-    public List<Food> sortByRating() {
+    public List<Food> sortByRatingAcs() {
         System.out.println("oke");
         return foodService.sortByRatingAcs();
     }
@@ -65,4 +65,16 @@ public class FoodController {
         return foodService.sortByRatingDesc();
     }
 
+
+    @GetMapping("/sortByPriceAcs")
+    public List<Food> sortByPriceAcs() {
+        System.out.println("oke");
+        return foodService.sortByPriceAcs();
+    }
+
+    @GetMapping("/sortByPriceDesc")
+    public List<Food> sortByPriceDesc() {
+        System.out.println("oke");
+        return foodService.sortByPriceDesc();
+    }
 }
