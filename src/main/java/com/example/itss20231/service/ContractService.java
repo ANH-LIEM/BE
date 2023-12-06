@@ -2,6 +2,7 @@ package com.example.itss20231.service;
 
 import com.example.itss20231.dto.Contract;
 import com.example.itss20231.dto.Food;
+import com.example.itss20231.dto.User;
 import com.example.itss20231.repo.ContractRepo;
 import com.example.itss20231.repo.FoodAndLocationsRepo;
 import com.example.itss20231.service.impl.UserServiceImpl;
@@ -17,10 +18,11 @@ public class ContractService {
     private final ContractRepo contractRepo;
     private final UserServiceImpl userService;
     private final TourService tourService;
+    private final User currentUser;
 
-    public Contract createContract(int userId, int tourId) {
+    public Contract createContract(int tourId) {
         Contract contract = new Contract();
-        contract.setUser(userService.getUserById(userId));
+        contract.setUser(userService.getUserByEmail(currentUser.getEmail()));
         contract.setTour(tourService.getTourById(tourId));
         return contractRepo.save(contract);
     }

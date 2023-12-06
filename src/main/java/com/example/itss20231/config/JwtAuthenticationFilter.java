@@ -1,5 +1,6 @@
 package com.example.itss20231.config;
 
+import com.example.itss20231.dto.User;
 import com.example.itss20231.service.JWTService;
 import com.example.itss20231.service.UserService;
 import jakarta.servlet.FilterChain;
@@ -24,6 +25,8 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JWTService jwtService;
     private final UserService userService;
+    private final User currentUser;
+
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
@@ -38,6 +41,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         userEmail = jwtService.extractUserName(jwt);
         if (StringUtils.isNotEmpty(userEmail)
                 && SecurityContextHolder.getContext().getAuthentication() == null) {
+            currentUser.setEmail(userEmail);
             UserDetails userDetails = userService.userDetailsService()
                     .loadUserByUsername(userEmail);
             if (jwtService.isTokenValid(jwt, userDetails)) {

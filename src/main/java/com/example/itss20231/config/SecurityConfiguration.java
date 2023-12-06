@@ -2,6 +2,7 @@ package com.example.itss20231.config;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
+import com.example.itss20231.dto.User;
 import com.example.itss20231.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +26,7 @@ import org.springframework.web.filter.CorsFilter;
 public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserService userService;
-    private final CorsConfiguration corsConfiguration;
+    private final CorsFilter corsFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -35,7 +36,7 @@ public class SecurityConfiguration {
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(
                         jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(corsConfiguration.corsFilter(), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
