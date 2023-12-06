@@ -1,11 +1,10 @@
 package com.example.itss20231.controller;
 
 import com.example.itss20231.dto.Tour;
-import com.example.itss20231.dto.TourCreationRequest;
+import com.example.itss20231.dao.request.TourCreationRequest;
 import com.example.itss20231.service.ContractService;
 import com.example.itss20231.service.TourService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

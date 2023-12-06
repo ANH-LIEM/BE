@@ -1,5 +1,6 @@
-package com.example.itss20231.dto;
+package com.example.itss20231.dao.request;
 
+import com.example.itss20231.dto.Tour;
 import lombok.Data;
 import lombok.Getter;
 
