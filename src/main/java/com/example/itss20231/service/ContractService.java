@@ -30,4 +30,8 @@ public class ContractService {
     public int numberOfPeople(int tourId) {
         return contractRepo.countByTourId(tourId);
     }
+
+    public boolean isBooked(int tourId) {
+        return contractRepo.existsByTourIdAndUserId(tourId, userService.getUserByEmail(currentUser.getEmail()).getId());
+    }
 }

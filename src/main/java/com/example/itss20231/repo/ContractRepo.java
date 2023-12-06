@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContractRepo extends JpaRepository<Contract, Integer> {
     int countByTourId(int tourId);
+
+    boolean existsByTourIdAndUserId(int tourId, Integer id);
 }

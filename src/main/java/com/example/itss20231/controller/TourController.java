@@ -70,6 +70,11 @@ public class TourController {
         return ResponseEntity.ok().body(contractService.numberOfPeople(id));
     }
 
+    @GetMapping("/tour/book/{id}")
+    public ResponseEntity<Boolean> isCurrentUserRegister(@PathVariable int id) {
+        return ResponseEntity.ok().body(contractService.isBooked(id));
+    }
+
 
 }
 
