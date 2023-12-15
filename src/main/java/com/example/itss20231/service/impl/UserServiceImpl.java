@@ -1,5 +1,6 @@
 package com.example.itss20231.service.impl;
 
+import com.example.itss20231.dto.Role;
 import com.example.itss20231.dto.User;
 import com.example.itss20231.repo.UserRepo;
 import com.example.itss20231.service.UserService;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
+    private final User currentUser;
+
 
     @Override
     public UserDetailsService userDetailsService() {
@@ -30,5 +33,10 @@ public class UserServiceImpl implements UserService {
 
     public User getUserByEmail(String email) {
         return userRepo.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
+    public Role getRoleById() {
+        User user = getUserByEmail(currentUser.getEmail());
+        return userRepo.findRoleById(user.getId());
     }
 }

@@ -73,7 +73,4 @@ public class TourController {
     public ResponseEntity<Boolean> isCurrentUserRegister(@PathVariable int id) {
         return ResponseEntity.ok().body(contractService.isBooked(id));
     }
-
-
 }
-
