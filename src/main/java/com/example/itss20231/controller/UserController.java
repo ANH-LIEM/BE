@@ -1,5 +1,6 @@
 package com.example.itss20231.controller;
 
+import com.example.itss20231.dao.response.UserResponse;
 import com.example.itss20231.dto.Role;
 import com.example.itss20231.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -17,5 +18,10 @@ public class UserController {
     @GetMapping("/user/role")
     public ResponseEntity<Role> get() {
         return ResponseEntity.ok().body(userService.getRoleById());
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<UserResponse> getUser() {
+        return ResponseEntity.ok().body(userService.getUser());
     }
 }

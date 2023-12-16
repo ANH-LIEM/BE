@@ -1,5 +1,6 @@
 package com.example.itss20231.service.impl;
 
+import com.example.itss20231.dao.response.UserResponse;
 import com.example.itss20231.dto.Role;
 import com.example.itss20231.dto.User;
 import com.example.itss20231.repo.UserRepo;
@@ -38,5 +39,16 @@ public class UserServiceImpl implements UserService {
     public Role getRoleById() {
         User user = getUserByEmail(currentUser.getEmail());
         return userRepo.findRoleById(user.getId());
+    }
+
+    public UserResponse getUser() {
+        User user = getUserByEmail(currentUser.getEmail());
+        return UserResponse.builder()
+                .name(user.getName())
+                .email(user.getEmail())
+                .role(user.getRole())
+                .phone(user.getPhone())
+                .nationality(user.getNationality())
+                .build();
     }
 }
