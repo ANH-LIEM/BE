@@ -60,6 +60,7 @@ public class TourService {
         existingTour.setFromDate(updatedTour.getFromDate());
         existingTour.setClosed(updatedTour.isClosed());
         existingTour.setToDate(updatedTour.getToDate());
+        existingTour.setUrl(updatedTour.getUrl());
         return tourRepo.save(existingTour);
     }
     @Transactional
